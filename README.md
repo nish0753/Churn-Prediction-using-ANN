@@ -7,6 +7,7 @@ A machine learning project that predicts customer churn in the banking sector us
 This project analyzes customer data to predict whether a bank customer will churn (leave the bank) or stay. Using deep learning techniques, we achieve accurate predictions that can help banks proactively retain customers.
 
 ### 🎯 Key Features
+
 - **Deep Learning Model**: Sequential Neural Network with 3 layers
 - **Interactive Web App**: Streamlit-based user interface for real-time predictions
 - **Data Preprocessing**: Complete pipeline including encoding, scaling, and feature engineering
@@ -32,27 +33,32 @@ Try the live prediction app: [Run the Streamlit app locally]
 ## 🛠️ Installation & Setup
 
 ### Prerequisites
+
 - Python 3.8+
 - pip package manager
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/nish0753/Churn-Prediction-using-ANN.git
 cd Churn-Prediction-using-ANN
 ```
 
 ### 2. Create Virtual Environment
+
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 ### 3. Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 4. Run the Application
+
 ```bash
 streamlit run app_fixed.py
 ```
@@ -60,12 +66,14 @@ streamlit run app_fixed.py
 ## 📈 Model Architecture
 
 Our ANN model consists of:
+
 - **Input Layer**: 12 features (after preprocessing)
 - **Hidden Layer 1**: 64 neurons with ReLU activation
-- **Hidden Layer 2**: 32 neurons with ReLU activation  
+- **Hidden Layer 2**: 32 neurons with ReLU activation
 - **Output Layer**: 1 neuron with Sigmoid activation (binary classification)
 
 ### Model Performance
+
 - **Training Accuracy**: ~86%
 - **Validation Accuracy**: ~84%
 - **Loss Function**: Binary Crossentropy
@@ -75,19 +83,19 @@ Our ANN model consists of:
 
 The dataset includes the following customer attributes:
 
-| Feature | Description | Type |
-|---------|-------------|------|
-| CreditScore | Customer's credit score | Numerical |
-| Geography | Customer's location (France, Germany, Spain) | Categorical |
-| Gender | Customer's gender | Categorical |
-| Age | Customer's age | Numerical |
-| Tenure | Years as bank customer | Numerical |
-| Balance | Account balance | Numerical |
-| NumOfProducts | Number of bank products used | Numerical |
-| HasCrCard | Has credit card (0/1) | Binary |
-| IsActiveMember | Active membership status (0/1) | Binary |
-| EstimatedSalary | Estimated salary | Numerical |
-| **Exited** | **Target: Customer churned (0/1)** | **Binary** |
+| Feature         | Description                                  | Type        |
+| --------------- | -------------------------------------------- | ----------- |
+| CreditScore     | Customer's credit score                      | Numerical   |
+| Geography       | Customer's location (France, Germany, Spain) | Categorical |
+| Gender          | Customer's gender                            | Categorical |
+| Age             | Customer's age                               | Numerical   |
+| Tenure          | Years as bank customer                       | Numerical   |
+| Balance         | Account balance                              | Numerical   |
+| NumOfProducts   | Number of bank products used                 | Numerical   |
+| HasCrCard       | Has credit card (0/1)                        | Binary      |
+| IsActiveMember  | Active membership status (0/1)               | Binary      |
+| EstimatedSalary | Estimated salary                             | Numerical   |
+| **Exited**      | **Target: Customer churned (0/1)**           | **Binary**  |
 
 ## 🧮 Data Preprocessing Pipeline
 
@@ -101,12 +109,14 @@ The dataset includes the following customer attributes:
 ## 📊 Usage Examples
 
 ### Training the Model
+
 ```python
 # Run the training notebook
 jupyter notebook experiments.ipynb
 ```
 
 ### Making Predictions
+
 ```python
 # Example prediction
 customer_data = {
@@ -128,6 +138,7 @@ customer_data = {
 ## 🌐 Web Application Features
 
 ### Enhanced Streamlit App (`app_fixed.py`)
+
 - **Interactive Input**: Sliders, selectboxes for all features
 - **Real-time Predictions**: Instant churn probability calculation
 - **Visual Results**: Color-coded risk assessment
@@ -135,6 +146,7 @@ customer_data = {
 - **Error Handling**: Robust model loading and prediction pipeline
 
 ### Screenshots
+
 [Add screenshots of your Streamlit app here]
 
 ## 📋 Requirements
@@ -163,6 +175,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Nishant**
+
 - GitHub: [@nish0753](https://github.com/nish0753)
 - LinkedIn: [Your LinkedIn Profile]
 

@@ -4,35 +4,50 @@ import tensorflow as tf
 from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder
 import pandas as pd
 import pickle
+import json
 
-# Load the trained model with error handling
-try:
-    model = tf.keras.models.load_model('model.h5', compile=False)
-    # Recompile the model to avoid issues
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-    model_loaded = True
-except Exception as e:
-    st.error(f"Error loading model: {e}")
-    st.info("Creating a new model with the same architecture...")
-    
-    # Fallback: Create model with same architecture
+# Function to create model with the same architecture as training
+def create_model(input_shape):
     model = tf.keras.Sequential([
-        tf.keras.layers.Dense(64, activation='relu', input_shape=(12,)),
+        tf.keras.layers.Dense(64, activation='relu', input_shape=input_shape),
         tf.keras.layers.Dense(32, activation='relu'),
         tf.keras.layers.Dense(1, activation='sigmoid')
     ])
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    return model
+
+# Load model architecture info
+try:
+    with open('model_architecture.json', 'r') as f:
+        model_info = json.load(f)
+    input_shape = (model_info['input_shape'],)
+    model = create_model(input_shape)
+    st.success("✅ Model architecture loaded successfully!")
+    model_loaded = True
+except Exception as e:
+    st.warning(f"⚠️ Model architecture file not found. Using default architecture.")
+    # Default input shape based on your preprocessing
+    input_shape = (12,)  # 12 features after preprocessing
+    model = create_model(input_shape)
     model_loaded = False
 
-# Load the encoders and scaler
-with open('label_encoder_gender.pkl', 'rb') as file:
-    label_encoder_gender = pickle.load(file)
-
-with open('onehot_encoder_geo.pkl', 'rb') as file:
-    onehot_encoder_geo = pickle.load(file)
-
-with open('scaler.pkl', 'rb') as file:
-    scaler = pickle.load(file)
+# Load the encoders and scaler with error handling
+try:
+    with open('label_encoder_gender.pkl', 'rb') as file:
+        label_encoder_gender = pickle.load(file)
+    
+    with open('onehot_encoder_geo.pkl', 'rb') as file:
+        onehot_encoder_geo = pickle.load(file)
+    
+    with open('scaler.pkl', 'rb') as file:
+        scaler = pickle.load(file)
+    
+    encoders_loaded = True
+    st.success("✅ Encoders and scaler loaded successfully!")
+except Exception as e:
+    st.error(f"❌ Error loading preprocessors: {e}")
+    st.info("Please ensure the pickle files are available in the repository.")
+    st.stop()
 
 
 ## streamlit app
